@@ -12,38 +12,21 @@
             box-sizing: border-box;
         }
 
-        :root {
-            --bg-primary: #0e1116;
-            --bg-secondary: #1a1f26;
-            --bg-tertiary: #232a33;
-            --border-color: #2a3038;
-            --text-primary: #ffffff;
-            --text-secondary: #9ca3af;
-            --text-muted: #6b7280;
-            --accent-gold: #f59e0b;
-            --accent-green: #10b981;
-            --accent-blue: #3b82f6;
-            --accent-purple: #8b5cf6;
-        }
-
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            background: var(--bg-primary);
+            background: #1a1d21;
             min-height: 100vh;
-            color: var(--text-primary);
+            color: #fff;
         }
 
-        /* Header - BC.GAME style */
+        /* Header */
         .header {
-            background: var(--bg-secondary);
-            padding: 14px 16px;
+            background: #1e2228;
+            padding: 12px 16px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            border-bottom: 1px solid #2d333b;
         }
 
         .header-left {
@@ -53,27 +36,16 @@
         }
 
         .back-btn {
-            color: var(--text-muted);
-            font-size: 20px;
+            color: #8b949e;
+            font-size: 24px;
             cursor: pointer;
-            padding: 4px;
+            line-height: 1;
         }
 
         .header-title {
             font-size: 16px;
             font-weight: 600;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 16px;
-            align-items: center;
-        }
-
-        .header-icon {
-            color: var(--text-muted);
-            font-size: 18px;
-            cursor: pointer;
+            color: #fff;
         }
 
         /* Loading */
@@ -88,8 +60,8 @@
         .spinner {
             width: 40px;
             height: 40px;
-            border: 3px solid var(--border-color);
-            border-top-color: var(--accent-gold);
+            border: 3px solid #2d333b;
+            border-top-color: #f0b90b;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
@@ -100,8 +72,8 @@
 
         .loading-text {
             margin-top: 12px;
-            color: var(--text-muted);
-            font-size: 13px;
+            color: #8b949e;
+            font-size: 14px;
         }
 
         /* Error */
@@ -116,199 +88,201 @@
         }
 
         .error-icon {
-            font-size: 64px;
+            font-size: 60px;
             margin-bottom: 16px;
         }
 
         .error h2 {
-            color: #ef4444;
+            color: #f85149;
             font-size: 18px;
             margin-bottom: 8px;
         }
 
         .error p {
-            color: var(--text-muted);
+            color: #8b949e;
             font-size: 14px;
         }
 
-        /* Main Content */
+        /* Content */
         .content {
             display: none;
-            background: var(--bg-primary);
-            padding-bottom: 100px;
+            padding-bottom: 90px;
         }
 
-        /* Profile Section - BC.GAME Style */
+        /* Profile Section */
         .profile-section {
-            background: var(--bg-secondary);
-            padding: 24px 16px;
+            background: #1e2228;
+            padding: 20px 16px 24px;
+            text-align: center;
             position: relative;
         }
 
-        .profile-top {
+        .profile-top-row {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 20px;
+            align-items: center;
+            margin-bottom: 16px;
         }
 
-        .likes-badge {
+        .likes-box {
             display: flex;
             align-items: center;
-            gap: 6px;
-            color: var(--text-muted);
-            font-size: 13px;
+            gap: 4px;
+            color: #f85149;
+            font-size: 14px;
         }
 
-        .likes-badge svg {
-            width: 16px;
-            height: 16px;
-            fill: var(--text-muted);
+        .likes-box svg {
+            width: 18px;
+            height: 18px;
+            fill: #f85149;
         }
 
-        .verified-badge {
-            background: linear-gradient(135deg, var(--accent-green), #34d399);
+        .verified-tag {
+            background: #238636;
             color: #fff;
             padding: 4px 10px;
-            border-radius: 12px;
-            font-size: 10px;
+            border-radius: 4px;
+            font-size: 11px;
             font-weight: 600;
             display: flex;
             align-items: center;
             gap: 4px;
         }
 
-        .profile-main {
-            text-align: center;
-        }
-
-        .avatar-wrapper {
+        .avatar-box {
             position: relative;
             display: inline-block;
-            margin-bottom: 12px;
+            margin-bottom: 8px;
         }
 
         .avatar {
-            width: 88px;
-            height: 88px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
-            border: 3px solid var(--accent-blue);
+            border: 3px solid #3b82f6;
             object-fit: cover;
-            background: var(--bg-tertiary);
+            background: #2d333b;
         }
 
-        .vip-badge {
+        .vip-tag {
             position: absolute;
-            bottom: -6px;
+            bottom: -4px;
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(135deg, #a855f7, #7c3aed);
+            background: linear-gradient(135deg, #7c3aed, #a855f7);
             color: #fff;
-            padding: 3px 10px;
+            padding: 2px 10px;
             border-radius: 10px;
-            font-size: 9px;
+            font-size: 10px;
             font-weight: 700;
             white-space: nowrap;
-            text-transform: uppercase;
-            box-shadow: 0 2px 8px rgba(168, 85, 247, 0.4);
         }
 
         .username {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
-            margin: 16px 0 4px;
+            margin: 12px 0 4px;
+            color: #fff;
         }
 
-        .user-id {
-            color: var(--text-muted);
+        .uid {
+            color: #8b949e;
             font-size: 13px;
         }
 
-        /* Section Card - BC.GAME Style */
-        .section-card {
-            background: var(--bg-secondary);
+        /* Cards */
+        .card {
+            background: #1e2228;
             margin: 10px 12px;
             border-radius: 12px;
             overflow: hidden;
         }
 
-        .section-header {
+        .card-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
             padding: 14px 16px;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid #2d333b;
         }
 
-        .section-title {
+        .card-title {
             display: flex;
             align-items: center;
             gap: 8px;
             font-size: 14px;
             font-weight: 600;
+            color: #fff;
         }
 
-        .section-title-icon {
+        .card-title img {
             width: 20px;
             height: 20px;
         }
 
-        .details-link {
-            color: var(--accent-blue);
+        .details-btn {
+            color: #3b82f6;
             font-size: 13px;
             text-decoration: none;
-            display: flex;
-            align-items: center;
-            gap: 4px;
         }
 
-        /* Medals - BC.GAME Style */
-        .medals-grid {
+        /* Medals */
+        .medals-row {
             display: flex;
-            gap: 10px;
+            gap: 8px;
             padding: 16px;
             overflow-x: auto;
-            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
         }
 
-        .medals-grid::-webkit-scrollbar {
+        .medals-row::-webkit-scrollbar {
             display: none;
         }
 
-        .medal {
-            width: 44px;
-            height: 44px;
+        .medal-item {
+            width: 48px;
+            height: 48px;
             border-radius: 50%;
-            background: linear-gradient(135deg, var(--accent-gold), #d97706);
+            flex-shrink: 0;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 20px;
-            flex-shrink: 0;
-            box-shadow: 0 2px 8px rgba(245, 158, 11, 0.3);
+            overflow: hidden;
         }
 
-        .medal.locked {
-            background: var(--bg-tertiary);
-            opacity: 0.4;
-            box-shadow: none;
+        .medal-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        /* Stats Grid - BC.GAME Style */
+        .medal-item.locked {
+            opacity: 0.3;
+            filter: grayscale(100%);
+        }
+
+        /* Stats Grid */
         .stats-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 1px;
-            background: var(--border-color);
         }
 
-        .stat-box {
-            background: var(--bg-secondary);
-            padding: 18px 16px;
+        .stat-item {
+            padding: 16px;
             text-align: center;
+            border-bottom: 1px solid #2d333b;
+            border-right: 1px solid #2d333b;
         }
 
-        .stat-box.full {
+        .stat-item:nth-child(2n) {
+            border-right: none;
+        }
+
+        .stat-item.full {
             grid-column: 1 / -1;
+            border-right: none;
+            border-bottom: none;
         }
 
         .stat-label {
@@ -317,103 +291,67 @@
             justify-content: center;
             gap: 6px;
             font-size: 12px;
-            color: var(--text-muted);
+            color: #8b949e;
             margin-bottom: 8px;
         }
 
-        .stat-icon {
-            font-size: 14px;
+        .stat-label img {
+            width: 16px;
+            height: 16px;
         }
 
         .stat-value {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
+            color: #fff;
         }
 
         .stat-value.gold {
-            color: var(--accent-gold);
+            color: #f0b90b;
         }
 
         .stat-value.green {
-            color: var(--accent-green);
+            color: #3fb950;
         }
 
-        /* Rakeback Card */
+        /* Rakeback */
         .rakeback-card {
-            background: linear-gradient(135deg, #064e3b, #065f46);
+            background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
             margin: 10px 12px;
             border-radius: 12px;
-            padding: 24px 20px;
+            padding: 20px;
             text-align: center;
-            border: 1px solid rgba(16, 185, 129, 0.3);
+            border: 1px solid #10b981;
         }
 
-        .rakeback-label {
+        .rakeback-title {
             font-size: 11px;
             color: #34d399;
             font-weight: 700;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
         }
 
         .rakeback-amount {
-            font-size: 40px;
+            font-size: 36px;
             font-weight: 800;
             color: #34d399;
-            margin-bottom: 6px;
-            text-shadow: 0 2px 10px rgba(52, 211, 153, 0.3);
+            margin-bottom: 4px;
         }
 
-        .rakeback-formula {
+        .rakeback-info {
             font-size: 11px;
-            color: var(--text-muted);
+            color: #9ca3af;
         }
 
-        /* Claim Button */
-        .claim-wrapper {
-            padding: 16px 12px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, var(--bg-primary) 40%);
-            padding-top: 40px;
-        }
-
-        .claim-btn {
-            width: 100%;
-            background: linear-gradient(135deg, var(--accent-gold), #d97706);
-            color: #000;
-            border: none;
-            padding: 16px;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
-        }
-
-        .claim-btn:active {
-            transform: scale(0.98);
-        }
-
-        /* Info Grid */
-        .info-grid {
-            padding: 0;
-        }
-
+        /* Info Card */
         .info-row {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 14px 16px;
-            border-bottom: 1px solid var(--border-color);
+            border-bottom: 1px solid #2d333b;
         }
 
         .info-row:last-child {
@@ -421,21 +359,49 @@
         }
 
         .info-label {
-            color: var(--text-muted);
+            color: #8b949e;
             font-size: 13px;
         }
 
         .info-value {
             font-size: 13px;
             font-weight: 600;
+            color: #fff;
         }
 
-        .info-value.success {
-            color: var(--accent-green);
+        .info-value.green {
+            color: #3fb950;
+        }
+
+        /* Claim Button */
+        .claim-wrapper {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px;
+            background: linear-gradient(transparent, #1a1d21 30%);
+            padding-top: 30px;
+        }
+
+        .claim-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #f0b90b, #d4a000);
+            color: #000;
+            border: none;
+            padding: 14px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
 
         /* Popup */
-        .popup-overlay {
+        .popup-bg {
             display: none;
             position: fixed;
             top: 0;
@@ -449,70 +415,60 @@
             padding: 20px;
         }
 
-        .popup-overlay.active {
+        .popup-bg.show {
             display: flex;
         }
 
-        .popup {
-            background: var(--bg-secondary);
+        .popup-box {
+            background: #1e2228;
             border-radius: 16px;
-            padding: 28px 24px;
-            max-width: 340px;
+            padding: 24px;
+            max-width: 320px;
             width: 100%;
             text-align: center;
-            animation: popupIn 0.3s ease;
-        }
-
-        @keyframes popupIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
         }
 
         .popup-icon {
-            font-size: 52px;
-            margin-bottom: 16px;
+            font-size: 48px;
+            margin-bottom: 12px;
         }
 
-        .popup h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
+        .popup-box h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #fff;
         }
 
-        .popup p {
-            color: var(--text-muted);
-            font-size: 14px;
-            margin-bottom: 24px;
-            line-height: 1.6;
+        .popup-box p {
+            color: #8b949e;
+            font-size: 13px;
+            margin-bottom: 20px;
+            line-height: 1.5;
         }
 
-        .popup-buttons {
+        .popup-btns {
             display: flex;
-            gap: 12px;
+            gap: 10px;
         }
 
         .popup-btn {
             flex: 1;
-            padding: 14px;
-            border-radius: 10px;
+            padding: 12px;
+            border-radius: 8px;
             font-size: 14px;
             font-weight: 600;
             cursor: pointer;
             border: none;
-            transition: transform 0.2s;
-        }
-
-        .popup-btn:active {
-            transform: scale(0.98);
         }
 
         .popup-btn.primary {
-            background: linear-gradient(135deg, var(--accent-gold), #d97706);
+            background: linear-gradient(135deg, #f0b90b, #d4a000);
             color: #000;
         }
 
         .popup-btn.secondary {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
+            background: #2d333b;
+            color: #fff;
         }
     </style>
 </head>
@@ -522,9 +478,6 @@
         <div class="header-left">
             <span class="back-btn">‹</span>
             <span class="header-title">Profile</span>
-        </div>
-        <div class="header-actions">
-            <span class="header-icon">⋮</span>
         </div>
     </div>
 
@@ -538,335 +491,306 @@
     <div id="error" class="error">
         <div class="error-icon">❌</div>
         <h2>Profile Not Found</h2>
-        <p>Unable to load profile data. Please check the UID and try again.</p>
+        <p>Unable to load profile. Please check UID.</p>
     </div>
 
     <!-- Content -->
     <div id="content" class="content">
-        <!-- Profile Section -->
+        <!-- Profile -->
         <div class="profile-section">
-            <div class="profile-top">
-                <div class="likes-badge">
+            <div class="profile-top-row">
+                <div class="likes-box">
                     <svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
-                    <span id="likes-count">0</span>
+                    <span id="likes">0</span>
                 </div>
-                <div class="verified-badge">
+                <div class="verified-tag">
                     <span>✓</span> VERIFIED
                 </div>
             </div>
-            <div class="profile-main">
-                <div class="avatar-wrapper">
-                    <img id="avatar" class="avatar" src="" alt="Avatar">
-                    <div id="vip-badge" class="vip-badge">VIP 0</div>
-                </div>
-                <div id="username" class="username">Loading...</div>
-                <div id="user-id" class="user-id">User ID: ...</div>
+            <div class="avatar-box">
+                <img id="avatar" class="avatar" src="" alt="">
+                <div id="vip" class="vip-tag">VIP 0</div>
             </div>
+            <div id="name" class="username">Loading...</div>
+            <div id="uid" class="uid">User ID: ...</div>
         </div>
 
-        <!-- Medals Section -->
-        <div class="section-card">
-            <div class="section-header">
-                <div class="section-title">
+        <!-- Medals -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
                     <span>🏅</span>
-                    <span>Medals <span id="medal-count" style="color: var(--text-muted);">0</span></span>
+                    <span>Medals <span id="medal-count" style="color:#8b949e">0</span></span>
                 </div>
-                <a href="#" class="details-link">Details ›</a>
+                <a href="#" class="details-btn">Details ›</a>
             </div>
-            <div class="medals-grid">
-                <div class="medal">🏆</div>
-                <div class="medal">🥇</div>
-                <div class="medal">☕</div>
-                <div class="medal locked">🎮</div>
-                <div class="medal locked">⭐</div>
-                <div class="medal locked">💬</div>
-                <div class="medal locked">📦</div>
+            <div id="medals-row" class="medals-row">
+                <!-- Medals will be loaded dynamically -->
             </div>
         </div>
 
-        <!-- Statistics Section -->
-        <div class="section-card">
-            <div class="section-header">
-                <div class="section-title">
+        <!-- Statistics -->
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
                     <span>📊</span>
                     <span>Statistics</span>
                 </div>
-                <a href="#" class="details-link">Details ›</a>
+                <a href="#" class="details-btn">Details ›</a>
             </div>
             <div class="stats-grid">
-                <div class="stat-box">
+                <div class="stat-item">
                     <div class="stat-label">
-                        <span class="stat-icon">🎯</span>
-                        Total Wins
+                        <span>🎯</span> Total Wins
                     </div>
-                    <div id="total-wins" class="stat-value green">0</div>
+                    <div id="wins" class="stat-value green">0</div>
                 </div>
-                <div class="stat-box">
+                <div class="stat-item">
                     <div class="stat-label">
-                        <span class="stat-icon">🎲</span>
-                        Total Bet Counts
+                        <span>🎲</span> Total Bet Counts
                     </div>
-                    <div id="total-bets" class="stat-value">0</div>
+                    <div id="bets" class="stat-value">0</div>
                 </div>
-                <div class="stat-box full">
+                <div class="stat-item full">
                     <div class="stat-label">
-                        <span class="stat-icon">💰</span>
-                        Total Wagered
+                        <span>💰</span> Total Wagered
                     </div>
-                    <div id="total-wagered" class="stat-value gold">$0.00</div>
+                    <div id="wagered" class="stat-value gold">$0.00</div>
                 </div>
             </div>
         </div>
 
-        <!-- Rakeback Section -->
+        <!-- Rakeback -->
         <div class="rakeback-card">
-            <div class="rakeback-label">💎 Your Rakeback Bonus</div>
-            <div id="rakeback-amount" class="rakeback-amount">$0.00</div>
-            <div class="rakeback-formula">Wager × 1% × 20% = Your Bonus</div>
+            <div class="rakeback-title">💎 YOUR RAKEBACK BONUS</div>
+            <div id="rakeback" class="rakeback-amount">$0.00</div>
+            <div class="rakeback-info">Wager × 1% × 20% = Your Bonus</div>
         </div>
 
-        <!-- Info Section -->
-        <div class="section-card">
-            <div class="info-grid">
-                <div class="info-row">
-                    <span class="info-label">VIP Level</span>
-                    <span id="info-vip" class="info-value">-</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Status</span>
-                    <span class="info-value success">✓ Verified</span>
-                </div>
-                <div class="info-row">
-                    <span class="info-label">Rakeback Rate</span>
-                    <span class="info-value">20%</span>
-                </div>
+        <!-- Info -->
+        <div class="card">
+            <div class="info-row">
+                <span class="info-label">VIP Level</span>
+                <span id="vip-info" class="info-value">-</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Status</span>
+                <span class="info-value green">✓ Verified</span>
+            </div>
+            <div class="info-row">
+                <span class="info-label">Rakeback Rate</span>
+                <span class="info-value">20%</span>
             </div>
         </div>
     </div>
 
     <!-- Claim Button -->
-    <div id="claim-wrapper" class="claim-wrapper" style="display: none;">
-        <button class="claim-btn" onclick="showClaimPopup()">
+    <div id="claim-wrap" class="claim-wrapper" style="display:none">
+        <button class="claim-btn" onclick="openPopup()">
             💰 CLAIM RAKEBACK NOW
         </button>
     </div>
 
     <!-- Popup -->
-    <div id="claim-popup" class="popup-overlay">
-        <div class="popup">
+    <div id="popup" class="popup-bg">
+        <div class="popup-box">
             <div class="popup-icon">🎉</div>
             <h3>Claim Your Rakeback!</h3>
-            <p>Contact our support team on Telegram to receive your rakeback bonus. Processing time: 24 hours.</p>
-            <div class="popup-buttons">
+            <p>Contact support on Telegram to receive your bonus. Processing: 24 hours.</p>
+            <div class="popup-btns">
                 <button class="popup-btn secondary" onclick="closePopup()">Close</button>
-                <button class="popup-btn primary" onclick="contactSupport()">Contact Support</button>
+                <button class="popup-btn primary" onclick="contact()">Contact</button>
             </div>
         </div>
     </div>
 
     <script>
-        const SUPPORT_USERNAME = 'BCVlP_Passy';
+        const SUPPORT = 'BCVlP_Passy';
+        const MEDAL_BASE = 'https://bc.fun/substation/bc/account/user/achieve/achieve_';
 
-        // Multiple CORS proxies for fallback
-        const CORS_PROXIES = [
-            (url) => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
-            (url) => `https://corsproxy.io/?${encodeURIComponent(url)}`,
-            (url) => `https://api.codetabs.com/v1/proxy?quest=${url}`
+        // CORS Proxies
+        const PROXIES = [
+            url => `https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`,
+            url => `https://corsproxy.io/?${encodeURIComponent(url)}`,
+            url => `https://api.codetabs.com/v1/proxy?quest=${url}`
         ];
 
         function getUID() {
-            const params = new URLSearchParams(window.location.search);
-            return params.get('uid');
+            return new URLSearchParams(window.location.search).get('uid');
         }
 
-        function formatNumber(num) {
-            if (num === null || num === undefined || isNaN(num)) return '0';
-            const n = parseInt(num);
-            if (isNaN(n)) return '0';
-            return n.toLocaleString('en-US');
+        function fmt(n) {
+            if (!n || isNaN(n)) return '0';
+            return parseInt(n).toLocaleString('en-US');
         }
 
-        function formatCurrency(num) {
-            if (num === null || num === undefined || isNaN(num)) return '$0.00';
-            const n = parseFloat(num);
-            if (isNaN(n)) return '$0.00';
-            return '$' + n.toLocaleString('en-US', {
-                minimumFractionDigits: 2,
-                maximumFractionDigits: 2
-            });
-        }
-
-        function calculateRakeback(wager) {
-            if (!wager || isNaN(wager)) return 0;
-            return parseFloat(wager) * 0.01 * 0.20;
-        }
-
-        async function fetchWithProxy(url, proxyIndex = 0) {
-            if (proxyIndex >= CORS_PROXIES.length) {
-                return null;
+        function fmtMoney(n) {
+            if (!n || isNaN(n)) return '$0.00';
+            const num = parseFloat(n);
+            if (num >= 1000000) {
+                return '$' + (num / 1000000).toFixed(2) + 'M';
+            } else if (num >= 1000) {
+                return '$' + (num / 1000).toFixed(2) + 'K';
             }
-
-            try {
-                const proxyUrl = CORS_PROXIES[proxyIndex](url);
-                console.log(`Trying proxy ${proxyIndex + 1}:`, proxyUrl);
-                
-                const response = await fetch(proxyUrl, {
-                    method: 'GET',
-                    headers: { 'Accept': 'application/json' }
-                });
-
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}`);
-                }
-
-                const text = await response.text();
-                console.log('Raw response:', text.substring(0, 500));
-                
-                const data = JSON.parse(text);
-                return data;
-            } catch (error) {
-                console.log(`Proxy ${proxyIndex + 1} failed:`, error.message);
-                return fetchWithProxy(url, proxyIndex + 1);
-            }
+            return '$' + num.toFixed(2);
         }
 
-        async function fetchUserData(uid) {
-            const apiUrl = `https://bc.fun/api/game/support/user/info/${uid}/`;
-            const result = await fetchWithProxy(apiUrl);
+        function calcRakeback(w) {
+            if (!w || isNaN(w)) return 0;
+            return parseFloat(w) * 0.01 * 0.20;
+        }
+
+        async function fetchAPI(uid) {
+            const url = `https://bc.fun/api/game/support/user/info/${uid}/`;
             
-            if (result && result.data) {
-                return result.data;
+            for (let i = 0; i < PROXIES.length; i++) {
+                try {
+                    const res = await fetch(PROXIES[i](url), {
+                        method: 'GET',
+                        headers: { 'Accept': 'application/json' }
+                    });
+                    
+                    if (res.ok) {
+                        const txt = await res.text();
+                        console.log('Raw:', txt);
+                        const json = JSON.parse(txt);
+                        if (json && json.data) return json.data;
+                    }
+                } catch (e) {
+                    console.log(`Proxy ${i+1} failed:`, e.message);
+                }
             }
             return null;
         }
 
-        function displayProfile(data) {
-            console.log('Full API data:', JSON.stringify(data, null, 2));
 
-            // Get UID from URL as fallback
+        function renderMedals(achievements) {
+            const container = document.getElementById('medals-row');
+            container.innerHTML = '';
+            
+            // Get unique achievement types and filter earned ones (status = "1")
+            const earnedMedals = achievements.filter(a => a.status === "1" || a.status === 1);
+            const lockedMedals = achievements.filter(a => a.status === "0" || a.status === 0);
+            
+            // Show earned medals first, then some locked ones
+            const toShow = [...earnedMedals.slice(0, 7), ...lockedMedals.slice(0, 7 - earnedMedals.length)].slice(0, 7);
+            
+            // If no achievements, show default medals
+            if (toShow.length === 0) {
+                const defaultTypes = [15, 14, 12, 13, 16, 17, 18];
+                defaultTypes.forEach((type, idx) => {
+                    const div = document.createElement('div');
+                    div.className = 'medal-item' + (idx >= 3 ? ' locked' : '');
+                    const img = document.createElement('img');
+                    img.src = `${MEDAL_BASE}${type}.png`;
+                    div.appendChild(img);
+                    container.appendChild(div);
+                });
+                return;
+            }
+            
+            toShow.forEach((medal, idx) => {
+                const div = document.createElement('div');
+                const isEarned = medal.status === "1" || medal.status === 1;
+                div.className = 'medal-item' + (!isEarned ? ' locked' : '');
+                const img = document.createElement('img');
+                img.src = `${MEDAL_BASE}${medal.type}.png`;
+                img.onerror = function() {
+                    this.style.display = 'none';
+                };
+                div.appendChild(img);
+                container.appendChild(div);
+            });
+        }
+
+        function render(d) {
+            console.log('Data:', JSON.stringify(d, null, 2));
+            
             const uid = getUID();
             
-            // Extract user info - check all possible field names from API
-            const userId = data.UserId || data.userId || data.user_id || data.id || uid;
-            const username = data.Name || data.name || data.username || data.userName || data.UserName || 'User';
-            const levelName = data.LevelName || data.levelName || data.level_name || data.vipLevel || data.VipLevel || 'VIP 0';
-            const likes = data.LikeCount || data.likeCount || data.like_count || data.likes || 0;
-            const medalCount = data.MedalCount || data.medalCount || data.medal_count || 3;
+            // Basic info - exact BC.GAME API field names
+            const userId = d.userId || uid;
+            const name = d.name || 'User';
+            const vipName = d.levelName || 'VIP 0';
+            const totalLikes = (d.totalLikeNum || 0) + (d.shareLikeNum || 0) + (d.headLikeNum || 0);
+            const medalCount = d.medalCount || 0;
+            const achievements = d.achievements || [];
 
-            // Extract stats - these are the critical fields, try ALL possible names
-            // The API might use different naming conventions
-            let totalWager = 0;
-            let totalWins = 0;
-            let totalBets = 0;
+            // Statistics - exact BC.GAME API field names
+            const wager = parseFloat(d.betAmountUsd) || 0;
+            const wins = parseInt(d.winNum) || 0;
+            const bets = parseInt(d.betNum) || 0;
 
-            // Try to get Total Wager
-            const wagerFields = ['TotalWager', 'totalWager', 'total_wager', 'Wager', 'wager', 'TotalBetAmount', 'totalBetAmount', 'wagered', 'Wagered'];
-            for (const field of wagerFields) {
-                if (data[field] !== undefined && data[field] !== null) {
-                    totalWager = parseFloat(data[field]);
-                    console.log(`Found wager in field "${field}":`, totalWager);
-                    break;
-                }
-            }
-
-            // Try to get Total Wins
-            const winsFields = ['TotalWins', 'totalWins', 'total_wins', 'Wins', 'wins', 'WinCount', 'winCount', 'win_count'];
-            for (const field of winsFields) {
-                if (data[field] !== undefined && data[field] !== null) {
-                    totalWins = parseInt(data[field]);
-                    console.log(`Found wins in field "${field}":`, totalWins);
-                    break;
-                }
-            }
-
-            // Try to get Total Bets
-            const betsFields = ['TotalBetCount', 'totalBetCount', 'total_bet_count', 'BetCount', 'betCount', 'bet_count', 'TotalBets', 'totalBets', 'bets', 'Bets'];
-            for (const field of betsFields) {
-                if (data[field] !== undefined && data[field] !== null) {
-                    totalBets = parseInt(data[field]);
-                    console.log(`Found bets in field "${field}":`, totalBets);
-                    break;
-                }
-            }
-
-            // Log all fields in data for debugging
-            console.log('All data fields:');
-            for (const key in data) {
-                console.log(`  ${key}: ${data[key]}`);
-            }
+            console.log('Parsed - Wager:', wager, 'Wins:', wins, 'Bets:', bets);
 
             // Calculate rakeback
-            const rakeback = calculateRakeback(totalWager);
+            const rakeback = calcRakeback(wager);
 
-            // Update avatar
-            const avatarEl = document.getElementById('avatar');
-            avatarEl.src = `https://img2.distributedresourcestorage.com/avatar/${userId}/s`;
-            avatarEl.onerror = function() {
-                this.src = 'data:image/svg+xml,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect fill="#232a33" width="100" height="100"/><text x="50" y="60" font-size="40" text-anchor="middle" fill="#6b7280">👤</text></svg>');
+            // Update UI
+            document.getElementById('avatar').src = `https://bc.fun/api/avatar/${userId}`;
+            document.getElementById('avatar').onerror = function() {
+                this.src = `https://img2.distributedresourcestorage.com/avatar/${userId}/s`;
             };
-
-            // Update profile
-            document.getElementById('username').textContent = username;
-            document.getElementById('user-id').textContent = `User ID: ${userId}`;
-            document.getElementById('vip-badge').textContent = levelName;
-            document.getElementById('likes-count').textContent = formatNumber(likes);
+            
+            document.getElementById('name').textContent = name;
+            document.getElementById('uid').textContent = `User ID:${userId}`;
+            document.getElementById('vip').textContent = vipName;
+            document.getElementById('likes').textContent = fmt(totalLikes);
             document.getElementById('medal-count').textContent = medalCount;
 
-            // Update stats
-            document.getElementById('total-wins').textContent = formatNumber(totalWins);
-            document.getElementById('total-bets').textContent = formatNumber(totalBets);
-            document.getElementById('total-wagered').textContent = formatCurrency(totalWager);
+            document.getElementById('wins').textContent = fmt(wins);
+            document.getElementById('bets').textContent = fmt(bets);
+            document.getElementById('wagered').textContent = fmtMoney(wager);
+            document.getElementById('rakeback').textContent = fmtMoney(rakeback);
+            document.getElementById('vip-info').textContent = vipName;
 
-            // Update rakeback
-            document.getElementById('rakeback-amount').textContent = formatCurrency(rakeback);
-
-            // Update info
-            document.getElementById('info-vip').textContent = levelName;
+            // Render medals from achievements
+            renderMedals(achievements);
 
             // Show content
             document.getElementById('loading').style.display = 'none';
             document.getElementById('content').style.display = 'block';
-            document.getElementById('claim-wrapper').style.display = 'block';
+            document.getElementById('claim-wrap').style.display = 'block';
         }
 
-        function showError() {
+        function showErr() {
             document.getElementById('loading').style.display = 'none';
             document.getElementById('error').style.display = 'flex';
         }
 
-        function showClaimPopup() {
-            document.getElementById('claim-popup').classList.add('active');
+        function openPopup() {
+            document.getElementById('popup').classList.add('show');
         }
 
         function closePopup() {
-            document.getElementById('claim-popup').classList.remove('active');
+            document.getElementById('popup').classList.remove('show');
         }
 
-        function contactSupport() {
-            window.open(`https://t.me/${SUPPORT_USERNAME}`, '_blank');
+        function contact() {
+            window.open(`https://t.me/${SUPPORT}`, '_blank');
         }
 
         async function init() {
             const uid = getUID();
-            console.log('UID from URL:', uid);
+            console.log('UID:', uid);
 
             if (!uid) {
-                showError();
+                showErr();
                 return;
             }
 
             try {
-                const userData = await fetchUserData(uid);
-                console.log('Fetched user data:', userData);
+                const data = await fetchAPI(uid);
+                console.log('Fetched:', data);
 
-                if (userData) {
-                    displayProfile(userData);
+                if (data) {
+                    render(data);
                 } else {
-                    showError();
+                    showErr();
                 }
-            } catch (error) {
-                console.error('Error:', error);
-                showError();
+            } catch (e) {
+                console.error('Error:', e);
+                showErr();
             }
         }
 
