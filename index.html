@@ -564,7 +564,7 @@
         <div class="rakeback-card">
             <div class="rakeback-title">💎 YOUR RAKEBACK BONUS</div>
             <div id="rakeback" class="rakeback-amount">$0.00</div>
-            <div class="rakeback-info">Wager × 1% × 20% = Your Bonus</div>
+            <div id="rakeback-formula" class="rakeback-info">Wager × 1% × 20% = Your Bonus</div>
         </div>
 
         <!-- Info -->
@@ -578,8 +578,8 @@
                 <span class="info-value green">✓ Verified</span>
             </div>
             <div class="info-row">
-                <span class="info-label">Rakeback Rate</span>
-                <span class="info-value">20%</span>
+                <span class="info-label">Unlock Rate</span>
+                <span id="unlock-rate" class="info-value">20%</span>
             </div>
         </div>
     </div>
@@ -638,6 +638,37 @@
         function calcRakeback(w) {
             if (!w || isNaN(w)) return 0;
             return parseFloat(w) * 0.01 * 0.20;
+        }
+
+        // Get unlock rate based on VIP level
+        function getUnlockRate(levelName) {
+            // Parse VIP level from string like "VIP51", "SVIP1", etc.
+            const lvl = levelName || '';
+            let level = 0;
+            let isSVIP = false;
+            
+            if (lvl.toUpperCase().includes('SVIP')) {
+                isSVIP = true;
+                level = parseInt(lvl.replace(/[^0-9]/g, '')) || 0;
+            } else {
+                level = parseInt(lvl.replace(/[^0-9]/g, '')) || 0;
+            }
+            
+            // Determine unlock rate
+            if (isSVIP) {
+                if (level >= 16) return 24;
+                return 23; // SVIP 1-15
+            } else {
+                if (level >= 38) return 22; // VIP 38-69
+                if (level >= 8) return 21;  // VIP 8-37
+                return 20; // VIP 0-7
+            }
+        }
+
+        // Calculate rakeback with correct unlock rate
+        function calcRakebackWithRate(wager, unlockRate) {
+            if (!wager || isNaN(wager)) return 0;
+            return parseFloat(wager) * 0.01 * (unlockRate / 100);
         }
 
         async function fetchAPI(uid) {
@@ -721,10 +752,13 @@
             const wins = parseInt(d.winNum) || 0;
             const bets = parseInt(d.betNum) || 0;
 
-            console.log('Parsed - Wager:', wager, 'Wins:', wins, 'Bets:', bets);
+            // Get unlock rate based on VIP level
+            const unlockRate = getUnlockRate(vipName);
+            
+            console.log('Parsed - Wager:', wager, 'Wins:', wins, 'Bets:', bets, 'Unlock Rate:', unlockRate + '%');
 
-            // Calculate rakeback
-            const rakeback = calcRakeback(wager);
+            // Calculate rakeback with correct unlock rate
+            const rakeback = calcRakebackWithRate(wager, unlockRate);
 
             // Update UI
             document.getElementById('avatar').src = `https://bc.fun/api/avatar/${userId}`;
@@ -742,7 +776,9 @@
             document.getElementById('bets').textContent = fmt(bets);
             document.getElementById('wagered').textContent = fmtMoney(wager);
             document.getElementById('rakeback').textContent = fmtMoney(rakeback);
+            document.getElementById('rakeback-formula').textContent = `Wager × 1% × ${unlockRate}% = Your Bonus`;
             document.getElementById('vip-info').textContent = vipName;
+            document.getElementById('unlock-rate').textContent = unlockRate + '%';
 
             // Render medals from achievements
             renderMedals(achievements);
