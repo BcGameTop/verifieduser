@@ -308,7 +308,7 @@
         }
 
         .details-btn span {
-            color: #3b82f6;
+            color: #3fb950;
             font-size: 12px;
             font-weight: 800;
         }
@@ -316,7 +316,7 @@
         .details-btn svg {
             width: 16px;
             height: 16px;
-            fill: #3b82f6;
+            fill: #3fb950;
             transform: rotate(180deg);
             margin-left: 4px;
         }
@@ -477,6 +477,27 @@
 
         .info-value.green {
             color: #3fb950;
+        }
+
+        /* Support Button */
+        .support-btn {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #f0b90b, #d4a000);
+            color: #000;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .support-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: #000;
         }
 
         /* Joined Date */
@@ -640,7 +661,7 @@
                     <!-- Avatar -->
                     <div class="avatar-container">
                         <img id="avatar" class="avatar" src="" alt="">
-                        <img class="avatar-frame" src="/assets/active/frame/4.png" alt="">
+                        <img class="avatar-frame" src="https://bc.fun/assets/active/frame/4.png" alt="">
                     </div>
 
                     <!-- VIP Badge -->
@@ -743,6 +764,15 @@
                     <div class="info-row">
                         <span class="info-label">Unlock Rate</span>
                         <span id="unlock-rate" class="info-value">20%</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Support</span>
+                        <button class="support-btn" onclick="contact()">
+                            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/>
+                            </svg>
+                            Contact Support
+                        </button>
                     </div>
                 </div>
 
