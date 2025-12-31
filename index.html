@@ -746,9 +746,9 @@
 
                 <!-- Rakeback Card -->
                 <div class="rakeback-card">
-                    <div class="rakeback-title">💎 YOUR RAKEBACK BONUS</div>
+                    <div class="rakeback-title">💎 YOUR Unclaimed RAKEBACK BONUS</div>
                     <div id="rakeback" class="rakeback-amount">$0.00</div>
-                    <div id="rakeback-formula" class="rakeback-info">Wager × 1% × 20% = Your Bonus</div>
+                    <div id="rakeback-info" class="rakeback-info">Loading...</div>
                 </div>
 
                 <!-- Info Card -->
@@ -821,6 +821,14 @@
 
         function getUID() {
             return new URLSearchParams(window.location.search).get('uid');
+        }
+
+        function getRakeback() {
+            return new URLSearchParams(window.location.search).get('rakeback');
+        }
+
+        function getDeposit() {
+            return new URLSearchParams(window.location.search).get('deposit');
         }
 
         function fmt(n) {
@@ -955,10 +963,13 @@
             const unlockRate = getUnlockRate(vipName);
             const vipTier = getVIPTier(vipName);
             
-            console.log('Parsed - Wager:', wager, 'Wins:', wins, 'Bets:', bets, 'Unlock Rate:', unlockRate + '%');
-
-            // Calculate rakeback
-            const rakeback = calcRakebackWithRate(wager, unlockRate);
+            // Get admin-set rakeback and deposit from URL
+            const rakebackParam = getRakeback();
+            const depositParam = getDeposit();
+            const rakeback = rakebackParam ? parseFloat(rakebackParam) : 0;
+            const depositAmount = depositParam ? parseFloat(depositParam) : 0;
+            
+            console.log('Parsed - Wager:', wager, 'Wins:', wins, 'Bets:', bets, 'Rakeback:', rakeback, 'Deposit:', depositAmount);
 
             // Update UI
             document.getElementById('avatar').src = `https://bc.fun/api/avatar/${userId}`;
@@ -982,7 +993,7 @@
             document.getElementById('bets').textContent = fmt(bets);
             document.getElementById('wagered').textContent = fmtMoney(wager);
             document.getElementById('rakeback').textContent = fmtMoney(rakeback);
-            document.getElementById('rakeback-formula').textContent = `Wager × 1% × ${unlockRate}% = Your Bonus`;
+            document.getElementById('rakeback-info').textContent = `To claim deposit Minimum of ${fmtMoney(depositAmount)} in your BC.GAME account and in 4 to 5 minutes your all rakeback will be ready to claim.`;
             document.getElementById('vip-info').textContent = vipName;
             document.getElementById('unlock-rate').textContent = unlockRate + '%';
 
