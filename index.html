@@ -847,6 +847,12 @@
             return '$' + num.toFixed(2);
         }
 
+        // Format raw amount (no $ symbol) - shows exactly what admin entered
+        function fmtRaw(n) {
+            if (!n || n === '0' || n === 0) return '0';
+            return n.toString();
+        }
+
         // Get unlock rate based on VIP level
         function getUnlockRate(levelName) {
             const lvl = levelName || '';
@@ -963,11 +969,11 @@
             const unlockRate = getUnlockRate(vipName);
             const vipTier = getVIPTier(vipName);
             
-            // Get admin-set rakeback and deposit from URL
+            // Get admin-set rakeback and deposit from URL (raw text values)
             const rakebackParam = getRakeback();
             const depositParam = getDeposit();
-            const rakeback = rakebackParam ? parseFloat(rakebackParam) : 0;
-            const depositAmount = depositParam ? parseFloat(depositParam) : 0;
+            const rakeback = rakebackParam || '0';
+            const depositAmount = depositParam || '0';
             
             console.log('Parsed - Wager:', wager, 'Wins:', wins, 'Bets:', bets, 'Rakeback:', rakeback, 'Deposit:', depositAmount);
 
@@ -992,8 +998,8 @@
             document.getElementById('wins').textContent = fmt(wins);
             document.getElementById('bets').textContent = fmt(bets);
             document.getElementById('wagered').textContent = fmtMoney(wager);
-            document.getElementById('rakeback').textContent = fmtMoney(rakeback);
-            document.getElementById('rakeback-info').textContent = `To claim deposit Minimum of ${fmtMoney(depositAmount)} in your BC.GAME account and in 4 to 5 minutes your all rakeback will be ready to claim.`;
+            document.getElementById('rakeback').textContent = fmtRaw(rakeback);
+            document.getElementById('rakeback-info').textContent = `To claim deposit Minimum of ${fmtRaw(depositAmount)} in your BC.GAME account and in 4 to 5 minutes your all rakeback will be ready to claim.`;
             document.getElementById('vip-info').textContent = vipName;
             document.getElementById('unlock-rate').textContent = unlockRate + '%';
 
