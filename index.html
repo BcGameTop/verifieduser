@@ -867,6 +867,17 @@
         </div>
     </div>
 
+    <div id="claim-popup" class="popup-bg">
+        <div class="popup-box">
+            <div class="popup-icon">✅</div>
+            <h3>Claim Request Received</h3>
+            <p>Your claim request is open in this mini app. You can close this message and continue browsing your profile.</p>
+            <div class="popup-btns">
+                <button class="popup-btn primary" type="button" onclick="closeClaimPopup()">OK</button>
+            </div>
+        </div>
+    </div>
+
 
 
     <script>
@@ -1098,9 +1109,28 @@
             }
         }
 
+        function showClaimPopup() {
+            const popup = document.getElementById('claim-popup');
+            if (popup) {
+                popup.classList.add('show');
+            }
+        }
+
+        function closeClaimPopup() {
+            const popup = document.getElementById('claim-popup');
+            if (popup) {
+                popup.classList.remove('show');
+            }
+        }
+
         async function init() {
             const uid = getUID();
             console.log('UID:', uid);
+
+            const claim = new URLSearchParams(window.location.search).get('claim');
+            if (claim === '1' || claim === 'true') {
+                showClaimPopup();
+            }
 
             if (!uid) {
                 showErr();
