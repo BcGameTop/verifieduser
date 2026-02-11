@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>BC.GAME - Profile</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -425,35 +426,57 @@
             color: #fff;
         }
 
-        /* Rakeback Card */
-        .rakeback-card {
-            background: linear-gradient(135deg, #064e3b 0%, #065f46 100%);
+        /* Bonus Claim Card */
+        .bonus-card {
+            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
             margin-top: 12px;
-            border-radius: 8px;
-            padding: 20px;
+            border-radius: 12px;
+            padding: 24px;
             text-align: center;
-            border: 1px solid #10b981;
+            border: 1px solid #a855f7;
+            box-shadow: 0 4px 24px rgba(124, 58, 237, 0.3);
         }
 
-        .rakeback-title {
-            font-size: 11px;
-            color: #34d399;
+        .bonus-title {
+            font-size: 13px;
+            color: #e9d5ff;
             font-weight: 700;
-            margin-bottom: 8px;
+            margin-bottom: 12px;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .rakeback-amount {
-            font-size: 36px;
-            font-weight: 800;
-            color: #34d399;
-            margin-bottom: 4px;
+        .bonus-icon {
+            font-size: 48px;
+            margin-bottom: 12px;
         }
 
-        .rakeback-info {
-            font-size: 11px;
-            color: #9ca3af;
+        .bonus-text {
+            font-size: 14px;
+            color: #e9d5ff;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .claim-bonus-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #f0b90b, #d4a000);
+            color: #000;
+            border: none;
+            padding: 16px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: transform 0.2s;
+        }
+
+        .claim-bonus-btn:active {
+            transform: scale(0.98);
         }
 
         /* Info Card */
@@ -749,11 +772,14 @@
                     </div>
                 </div>
 
-                <!-- Rakeback Card -->
-                <div class="rakeback-card">
-                    <div class="rakeback-title">💎 YOUR Unclaimed RAKEBACK BONUS</div>
-                    <div id="rakeback" class="rakeback-amount">$0.00</div>
-                    <div id="rakeback-info" class="rakeback-info">Loading...</div>
+                <!-- Bonus Claim Card -->
+                <div class="bonus-card">
+                    <div class="bonus-icon">🎁</div>
+                    <div class="bonus-title">Exclusive Bonus Available</div>
+                    <div class="bonus-text">Your bonus is ready to claim! Click below to visit BC.GAME and collect your reward.</div>
+                    <button class="claim-bonus-btn" onclick="claimBonus()">
+                        💰 Claim My Bonus Now
+                    </button>
                 </div>
 
                 <!-- Info Card -->
@@ -790,27 +816,14 @@
         </div>
     </div>
 
-    <!-- Claim Button -->
-    <div id="claim-wrap" class="claim-wrapper" style="display:none">
-        <button class="claim-btn" onclick="openPopup()">
-            💰 CLAIM RAKEBACK NOW
-        </button>
-    </div>
 
-    <!-- Popup -->
-    <div id="popup" class="popup-bg">
-        <div class="popup-box">
-            <div class="popup-icon">🎉</div>
-            <h3>Claim Your Rakeback!</h3>
-            <p>Contact support on Telegram to receive your bonus. Processing: 24 hours.</p>
-            <div class="popup-btns">
-                <button class="popup-btn secondary" onclick="closePopup()">Close</button>
-                <button class="popup-btn primary" onclick="contact()">Contact</button>
-            </div>
-        </div>
-    </div>
 
     <script>
+        // Initialize Telegram WebApp
+        let tg = window.Telegram.WebApp;
+        tg.expand();
+        tg.enableClosingConfirmation();
+        
         const SUPPORT = 'BCVlP_Passy';
         const MEDAL_BASE = 'https://bc.fun/substation/bc/account/user/achieve/achieve_';
 
@@ -828,14 +841,6 @@
             return new URLSearchParams(window.location.search).get('uid');
         }
 
-        function getRakeback() {
-            return new URLSearchParams(window.location.search).get('rakeback');
-        }
-
-        function getDeposit() {
-            return new URLSearchParams(window.location.search).get('deposit');
-        }
-
         function fmt(n) {
             if (!n || isNaN(n)) return '0';
             return parseInt(n).toLocaleString('en-US');
@@ -850,12 +855,6 @@
                 return '$' + (num / 1000).toFixed(2) + 'K';
             }
             return '$' + num.toFixed(2);
-        }
-
-        // Format raw amount (no $ symbol) - shows exactly what admin entered
-        function fmtRaw(n) {
-            if (!n || n === '0' || n === 0) return '0';
-            return n.toString();
         }
 
         // Get unlock rate based on VIP level
@@ -879,11 +878,6 @@
                 if (level >= 8) return 21;
                 return 20;
             }
-        }
-
-        function calcRakebackWithRate(wager, unlockRate) {
-            if (!wager || isNaN(wager)) return 0;
-            return parseFloat(wager) * 0.01 * (unlockRate / 100);
         }
 
         // Get VIP tier for badge styling
@@ -974,13 +968,8 @@
             const unlockRate = getUnlockRate(vipName);
             const vipTier = getVIPTier(vipName);
             
-            // Get admin-set rakeback and deposit from URL (raw text values)
-            const rakebackParam = getRakeback();
-            const depositParam = getDeposit();
-            const rakeback = rakebackParam || '0';
-            const depositAmount = depositParam || '0';
             
-            console.log('Parsed - Wager:', wager, 'Wins:', wins, 'Bets:', bets, 'Rakeback:', rakeback, 'Deposit:', depositAmount);
+            console.log('Parsed - Wager:', wager, 'Wins:', wins, 'Bets:', bets);
 
             // Update UI
             document.getElementById('avatar').src = `https://bc.fun/api/avatar/${userId}`;
@@ -1003,8 +992,6 @@
             document.getElementById('wins').textContent = fmt(wins);
             document.getElementById('bets').textContent = fmt(bets);
             document.getElementById('wagered').textContent = fmtMoney(wager);
-            document.getElementById('rakeback').textContent = fmtRaw(rakeback);
-            document.getElementById('rakeback-info').textContent = `To claim deposit Minimum of ${fmtRaw(depositAmount)} in your BC.GAME account and in 4 to 5 minutes your all rakeback will be ready to claim.`;
             document.getElementById('vip-info').textContent = vipName;
             document.getElementById('unlock-rate').textContent = unlockRate + '%';
 
@@ -1024,7 +1011,6 @@
             // Show content
             document.getElementById('loading').style.display = 'none';
             document.getElementById('content').style.display = 'block';
-            document.getElementById('claim-wrap').style.display = 'block';
         }
 
         function showErr() {
@@ -1032,16 +1018,16 @@
             document.getElementById('error').style.display = 'flex';
         }
 
-        function openPopup() {
-            document.getElementById('popup').classList.add('show');
-        }
-
-        function closePopup() {
-            document.getElementById('popup').classList.remove('show');
-        }
-
         function contact() {
-            window.open(`https://t.me/${SUPPORT}`, '_blank');
+            tg.openTelegramLink(`https://t.me/${SUPPORT}`);
+        }
+        
+        function claimBonus() {
+            // Open BC.GAME in Telegram mini app
+            tg.openLink('https://bcgame.services', { try_instant_view: true });
+            
+            // Alternative: open in Telegram browser
+            // tg.openLink('https://bcgame.services');
         }
 
         async function init() {
