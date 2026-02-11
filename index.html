@@ -1074,10 +1074,28 @@
         }
         
         function claimBonus() {
+            if (!window.Telegram || !tg || !tg.initData) {
+                alert('Please open this page inside Telegram to continue.');
+                return;
+            }
+
+            if (!tg.initData || tg.initData.length === 0) {
+                if (tg.showAlert) {
+                    tg.showAlert('Open this page from the bot to claim your bonus.');
+                } else {
+                    alert('Open this page from the bot to claim your bonus.');
+                }
+                return;
+            }
+
             const payload = {
                 action: 'claim_bonus'
             };
             tg.sendData(JSON.stringify(payload));
+
+            if (tg.showAlert) {
+                tg.showAlert('Request sent. Check the bot chat for the claim button.');
+            }
         }
 
         async function init() {
