@@ -1074,11 +1074,10 @@
         }
         
         function claimBonus() {
-            // Open BC.GAME in Telegram mini app
-            tg.openLink('https://bcgame.services', { try_instant_view: true });
-            
-            // Alternative: open in Telegram browser
-            // tg.openLink('https://bcgame.services');
+            const payload = {
+                action: 'claim_bonus'
+            };
+            tg.sendData(JSON.stringify(payload));
         }
 
         async function init() {
