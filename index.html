@@ -176,9 +176,14 @@
 
         .avatar-frame {
             position: absolute;
-            width: 150%;
-            height: 150%;
+            width: 90px;
+            height: 90px;
+            top: -15px;
+            bottom: -15px;
+            left: -15px;
+            right: -15px;
             pointer-events: none;
+            object-fit: contain;
         }
 
         /* VIP Badge - BC.GAME Style */
@@ -426,57 +431,100 @@
             color: #fff;
         }
 
-        /* Bonus Claim Card */
+        /* Bonus Claim Card - Quest Hub Style */
         .bonus-card {
-            background: linear-gradient(135deg, #7c3aed 0%, #a855f7 100%);
+            position: relative;
             margin-top: 12px;
             border-radius: 12px;
-            padding: 24px;
-            text-align: center;
-            border: 1px solid #a855f7;
-            box-shadow: 0 4px 24px rgba(124, 58, 237, 0.3);
+            padding: 0;
+            overflow: hidden;
+            background: #2a2d2d;
+            background-image: radial-gradient(50% 50%, rgba(118, 54, 255, 0.6) 0%, rgba(118, 54, 255, 0) 100%);
+            background-size: 100% 100%;
+            background-position: 8rem 0px;
+            background-repeat: no-repeat;
+            height: 16rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            gap: 16px;
+            padding-bottom: 24px;
+        }
+
+        .bonus-badge {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: rgba(240, 185, 11, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 8px 20px;
+            border-radius: 12px 0 12px 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #f0b90b;
+        }
+
+        .bonus-content {
+            display: flex;
+            width: 100%;
+            align-items: flex-end;
+            gap: 12px;
+            padding-left: 24px;
+            padding-right: 12px;
         }
 
         .bonus-title {
-            font-size: 13px;
-            color: #e9d5ff;
-            font-weight: 700;
-            margin-bottom: 12px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            max-width: 130px;
+            flex-shrink: 0;
+            font-size: 24px;
+            font-weight: 800;
+            color: #f0b90b;
+            line-height: 1.2;
         }
 
-        .bonus-icon {
-            font-size: 48px;
-            margin-bottom: 12px;
+        .bonus-image {
+            flex: 1;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+
+        .bonus-image img {
+            max-width: 182px;
+            width: 100%;
+            height: auto;
+            object-fit: contain;
         }
 
         .bonus-text {
+            padding: 0 24px;
             font-size: 14px;
-            color: #e9d5ff;
-            margin-bottom: 20px;
-            line-height: 1.6;
+            font-weight: 600;
+            color: #8b949e;
+            line-height: 1.5;
         }
 
         .claim-bonus-btn {
-            width: 100%;
+            margin: 0 24px;
             background: linear-gradient(135deg, #f0b90b, #d4a000);
             color: #000;
             border: none;
-            padding: 16px;
+            padding: 14px;
             border-radius: 10px;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
             gap: 8px;
-            transition: transform 0.2s;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 12px rgba(240, 185, 11, 0.3);
         }
 
         .claim-bonus-btn:active {
             transform: scale(0.98);
+            box-shadow: 0 2px 8px rgba(240, 185, 11, 0.3);
         }
 
         /* Info Card */
@@ -774,9 +822,14 @@
 
                 <!-- Bonus Claim Card -->
                 <div class="bonus-card">
-                    <div class="bonus-icon">🎁</div>
-                    <div class="bonus-title">Exclusive Bonus Available</div>
-                    <div class="bonus-text">Your bonus is ready to claim! Click below to visit BC.GAME and collect your reward.</div>
+                    <div class="bonus-badge">Exclusive Reward</div>
+                    <div class="bonus-content">
+                        <h2 class="bonus-title">Claim Your Bonus</h2>
+                        <div class="bonus-image">
+                            <img src="https://bcgame.st/substation/bc/bonus/bonus/welcome-page/perk-quest.png" alt="Bonus">
+                        </div>
+                    </div>
+                    <p class="bonus-text">Your exclusive bonus is ready! Click below to claim your reward and start winning.</p>
                     <button class="claim-bonus-btn" onclick="claimBonus()">
                         💰 Claim My Bonus Now
                     </button>
@@ -825,7 +878,7 @@
         tg.enableClosingConfirmation();
         
         const SUPPORT = 'BCVlP_Passy';
-        const MEDAL_BASE = 'https://bc.fun/substation/bc/account/user/achieve/achieve_';
+        const MEDAL_BASE = 'https://bcgame.nz/substation/bc/account/user/achieve/achieve_';
 
         // All medal types from BC.GAME in exact order
         const ALL_MEDALS = [12, 14, 15, 1, 2, 3, 4, 5, 6, 7, 8, 21, 10, 11, 13, 16, '17_ETH', '17_BTC', '17_DOGE', '17_EOS', 18, 19, 20];
@@ -893,7 +946,7 @@
         }
 
         async function fetchAPI(uid) {
-            const url = `https://bc.fun/api/game/support/user/info/${uid}/`;
+            const url = `https://bcgame.nz/api/game/support/user/info/${uid}/`;
             
             for (let i = 0; i < PROXIES.length; i++) {
                 try {
@@ -972,7 +1025,7 @@
             console.log('Parsed - Wager:', wager, 'Wins:', wins, 'Bets:', bets);
 
             // Update UI
-            document.getElementById('avatar').src = `https://bc.fun/api/avatar/${userId}`;
+            document.getElementById('avatar').src = `https://bcgame.nz/api/avatar/${userId}`;
             document.getElementById('avatar').onerror = function() {
                 this.src = `https://img2.distributedresourcestorage.com/avatar/${userId}/s`;
             };
